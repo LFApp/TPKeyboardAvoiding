@@ -9,7 +9,7 @@
 
 #define _UIKeyboardFrameEndUserInfoKey (&UIKeyboardFrameEndUserInfoKey != NULL ? UIKeyboardFrameEndUserInfoKey : @"UIKeyboardBoundsUserInfoKey")
 
-const CGFloat kCalculatedContentPadding = 10;
+const CGFloat kCalculatedContentPadding = 0;
 
 @interface TPKeyboardAvoidingScrollView () <UITextFieldDelegate, UITextViewDelegate> {
     UIEdgeInsets    _priorInset;
