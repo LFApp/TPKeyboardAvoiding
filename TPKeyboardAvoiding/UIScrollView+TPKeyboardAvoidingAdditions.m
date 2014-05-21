@@ -163,13 +163,26 @@ static const int kStateKey;
 
 - (UIView*)TPKeyboardAvoiding_findFirstResponderBeneathView:(UIView*)view {
     // Search recursively for first responder
-    for ( UIView *childView in view.subviews ) {
-        if ( [childView respondsToSelector:@selector(isFirstResponder)] && [childView isFirstResponder] ) return childView;
-        UIView *result = [self TPKeyboardAvoiding_findFirstResponderBeneathView:childView];
-        if ( result ) return result;
-    }
-    return nil;
+    __block UIView * result = nil;
+    [view.subviews enumerateObjectsUsingBlock:^(UIView * childView, __unused NSUInteger idx, BOOL *stop) {
+      if ([childView isKindOfClass:[UIResponder class]] && [childView respondsToSelector:@selector(accessoryView)] && [childView isFirstResponder])
+        {
+          result = childView;
+        }
+      
+        result = [self TPKeyboardAvoiding_findFirstResponderBeneathView:childView];
+      
+        if (result != nil)
+        {
+          *stop = YES;
+        }
+    
+  }];
+  return result;
+  
+  
 }
+
 
 - (void)TPKeyboardAvoiding_findTextFieldAfterTextField:(UIView*)priorTextField beneathView:(UIView*)view minY:(CGFloat*)minY foundView:(UIView**)foundView {
     // Search recursively for text field or text view below priorTextField
