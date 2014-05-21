@@ -168,17 +168,18 @@ static const int kStateKey;
       if ([childView isKindOfClass:[UIResponder class]] && [childView respondsToSelector:@selector(accessoryView)] && [childView isFirstResponder])
         {
           result = childView;
-        }
-      
-        result = [self TPKeyboardAvoiding_findFirstResponderBeneathView:childView];
-      
-        if (result != nil)
-        {
           *stop = YES;
         }
-    
-  }];
-  return result;
+      else {
+          result = [self TPKeyboardAvoiding_findFirstResponderBeneathView:childView];
+      
+          if (result != nil)
+          {
+            *stop = YES;
+          }
+        }      
+    }];
+    return result;
   
   
 }
