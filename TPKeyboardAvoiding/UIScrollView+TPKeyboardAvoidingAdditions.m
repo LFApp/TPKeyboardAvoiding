@@ -70,11 +70,11 @@ static const int kStateKey;
     
     self.contentInset = [self TPKeyboardAvoiding_contentInsetForKeyboard];
     
-        if ( firstResponder ) {
+  if ( firstResponder ) {
         CGFloat viewableHeight = self.bounds.size.height - self.contentInset.top - self.contentInset.bottom;
        CGFloat idealOffsetForView = [self TPKeyboardAvoiding_idealOffsetForView:firstResponder
                             withViewingAreaHeight:viewableHeight];
-      idealOffsetForView *= 0.62;
+
         [self setContentOffset:CGPointMake(self.contentOffset.x,
                                            idealOffsetForView)
                       animated:NO];
@@ -262,7 +262,7 @@ static const int kStateKey;
     if ( offset < -self.contentInset.top ) {
         offset = -self.contentInset.top;
     }
-
+    offset *= 0.62;
     return offset;
 }
 
