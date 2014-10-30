@@ -56,11 +56,11 @@ static const int kStateKey;
     if ( [self isKindOfClass:[TPKeyboardAvoidingScrollView class]] ) {
         state.priorContentSize = self.contentSize;
         
-        if ( CGSizeEqualToSize(self.contentSize, CGSizeZero) ) {
+        //if ( CGSizeEqualToSize(self.contentSize, CGSizeZero) ) {
             // Set the content size, if it's not set. Do not set content size explicitly if auto-layout
             // is being used to manage subviews
             self.contentSize = [self TPKeyboardAvoiding_calculatedContentSizeFromSubviewFrames];
-        }
+        //}
     }
     
     // Shrink view's inset by the keyboard's height, and scroll to show the text field/view being edited
