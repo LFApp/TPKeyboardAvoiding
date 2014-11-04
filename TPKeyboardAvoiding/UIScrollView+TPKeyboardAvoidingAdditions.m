@@ -262,7 +262,10 @@ static const int kStateKey;
     if ( offset < -self.contentInset.top ) {
         offset = -self.contentInset.top;
     }
-    offset *= 0.62;
+    
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ) { offset *= 0.72; }
+    else { offset *= 0.62; }
+
     return offset;
 }
 
